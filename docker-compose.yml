@@ -32,9 +32,9 @@ services:
       - toolshop
     labels:
       - traefik.enable=true
-      - traefik.http.routers.web.rule=Host(`toolshop.polteq-testing.com`)
-      - traefik.http.routers.web.tls=true
-      - traefik.http.routers.web.tls.certresolver=le
+      - traefik.http.routers.angular-ui.rule=Host(`toolshop.polteq-testing.com`)
+      - traefik.http.routers.angular-ui.tls=true
+      - traefik.http.routers.angular-ui.tls.certresolver=le
 
   # The Web Server
   web:
