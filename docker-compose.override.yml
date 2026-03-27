@@ -51,3 +51,5 @@ volumes:
 networks:
   toolshop:
     external: true
+  frontend:
+    external: true
