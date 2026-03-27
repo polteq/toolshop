@@ -9,6 +9,8 @@ services:
     working_dir: /var/www
     volumes:
       - ./${SPRINT}/API:/var/www:cached
+    networks:
+      - toolshop
     environment:
       - "PHP_OPCACHE_VALIDATE_TIMESTAMPS=1"
       - "DB_PORT=3306"
@@ -71,6 +73,8 @@ services:
     image: yobasystems/alpine-mariadb:10.6.11
     ports:
       - 3306
+    networks:
+      - toolshop
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
