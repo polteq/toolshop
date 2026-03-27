@@ -28,6 +28,14 @@ services:
       - 4200:4200
     command: >
       bash -c "npm install --force && ng serve --host 0.0.0.0 --port 4200"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.angular-ui.rule=Host(`api.toolshop.polteq-testing.com`)"
+      - "traefik.http.routers.angular-ui.entrypoints=websecure"
+      - "traefik.http.routers.angular-ui.tls.certresolver=le"
+      - "traefik.http.services.angular-ui.loadbalancer.server.port=4200"
+      - "traefik.http.routers.angular-ui.tls=true"
+      - "traefik.docker.network=web"
 
   # The Web Server
   web:
@@ -42,6 +50,15 @@ services:
       - 8000:81
     depends_on:
       - laravel-api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`api.toolshop.polteq-testing.com`)"
+      - "traefik.http.routers.web.entrypoints=websecure"
+      - "traefik.http.routers.web.tls.certresolver=le"
+      - "traefik.http.services.web.loadbalancer.server.port=8091"
+      - "traefik.http.routers.web.tls=true"
+      - "traefik.docker.network=web"
+
 
   composer:
     image: composer:2.6.6
