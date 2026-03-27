@@ -80,3 +80,7 @@ services:
 
 volumes:
   laravel-api:
+
+networks:
+  web:
+    external: true
