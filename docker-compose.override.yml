@@ -17,14 +17,14 @@ services:
     environment:
       - "PHP_OPCACHE_VALIDATE_TIMESTAMPS=1"
       - "DB_PORT=3306"
-      - "DB_HOST=mariadb"
+      - "DB_HOST=toolshop-mariadb"
       - "host=localhost"
       - DISABLE_LOGGING=${DISABLE_LOGGING}
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:fpm-alpine
     links:
-      - mariadb:db
+      - toolshop-mariadb:db
     environment:
       MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: root
