@@ -28,14 +28,13 @@ services:
       - 4200:4200
     command: >
       bash -c "npm install --force && ng serve --host 0.0.0.0 --port 4200"
+    networks:
+      - toolshop
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.angular-ui.rule=Host(`toolshop.polteq-testing.com`)"
-      - "traefik.http.routers.angular-ui.entrypoints=websecure"
-      - "traefik.http.routers.angular-ui.tls.certresolver=le"
-      - "traefik.http.services.angular-ui.loadbalancer.server.port=4200"
-      - "traefik.http.routers.angular-ui.tls=true"
-      - "traefik.docker.network=web"
+      - traefik.enable=true
+      - traefik.http.routers.web.rule=Host(`toolshop.polteq-testing.com`)
+      - traefik.http.routers.web.tls=true
+      - traefik.http.routers.web.tls.certresolver=le
 
   # The Web Server
   web:
@@ -50,14 +49,14 @@ services:
       - 8000:81
     depends_on:
       - laravel-api
+    networks:
+      - toolshop
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.web.rule=Host(`api.toolshop.polteq-testing.com`)"
-      - "traefik.http.routers.web.entrypoints=websecure"
-      - "traefik.http.routers.web.tls.certresolver=le"
-      - "traefik.http.services.web.loadbalancer.server.port=8091"
-      - "traefik.http.routers.web.tls=true"
-      - "traefik.docker.network=web"
+        - traefik.enable=true
+        - traefik.http.routers.web.rule=Host(`api.toolshop.polteq-testing.com`)
+        - traefik.http.routers.web.tls=true
+        - traefik.http.routers.web.tls.certresolver=le
+
 
 
   composer:
@@ -82,5 +81,5 @@ volumes:
   laravel-api:
 
 networks:
-  web:
+  toolshop:
     external: true

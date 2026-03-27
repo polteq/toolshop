@@ -39,3 +39,7 @@ services:
 
 volumes:
   phpmyadmindata:
+
+networks:
+  toolshop:
+    external: true
