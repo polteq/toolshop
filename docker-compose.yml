@@ -30,7 +30,7 @@ services:
       bash -c "npm install --force && ng serve --host 0.0.0.0 --port 4200"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.angular-ui.rule=Host(`api.toolshop.polteq-testing.com`)"
+      - "traefik.http.routers.angular-ui.rule=Host(`toolshop.polteq-testing.com`)"
       - "traefik.http.routers.angular-ui.entrypoints=websecure"
       - "traefik.http.routers.angular-ui.tls.certresolver=le"
       - "traefik.http.services.angular-ui.loadbalancer.server.port=4200"
