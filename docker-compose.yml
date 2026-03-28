@@ -16,7 +16,7 @@ services:
       - "PHP_OPCACHE_VALIDATE_TIMESTAMPS=1"
       - "DB_PORT=3306"
       - "DB_HOST=toolshop-mariadb"
-      - "host=localhost"
+      - "host=toolshop.polteq-testing.com"
       - DISABLE_LOGGING=${DISABLE_LOGGING:-false}
 
   angular-ui:
