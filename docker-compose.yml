@@ -35,7 +35,6 @@ services:
     networks:
       - toolshop
 
-
   # The Web Server
   web:
     build:
@@ -51,11 +50,7 @@ services:
       - laravel-api
     networks:
       - toolshop
-    labels:
-        - traefik.enable=true
-        - traefik.http.routers.web.rule=Host(`toolshop.polteq-testing.com`)
-        - traefik.http.routers.web.tls=true
-        - traefik.http.routers.web.tls.certresolver=le
+
 
 
 
