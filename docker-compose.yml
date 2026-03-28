@@ -61,6 +61,7 @@ services:
       context: ./_docker
       dockerfile: web.docker
     working_dir: /var/www
+    container_name: web
     volumes:
       - laravel-api:/var/www
     ports:
@@ -77,6 +78,7 @@ services:
   composer:
     image: composer:2.6.6
     command: install --no-dev --optimize-autoloader --ignore-platform-req=ext-ffi && chown -R www-data /var/www && chmod 777 /var/www
+    container_name: composer
     volumes_from:
       - laravel-api
     working_dir: /var/www
@@ -84,6 +86,7 @@ services:
   # The Database
   toolshop-mariadb:
     image: yobasystems/alpine-mariadb:10.6.11
+    container_name: toolshop-mariadb
     ports:
       - 3306
     networks:

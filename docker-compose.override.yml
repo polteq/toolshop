@@ -2,6 +2,7 @@ version: '2'
 services:
 
   web:
+    container_name: web
     networks:
       - toolshop
       - frontend
@@ -28,6 +29,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:fpm-alpine
+    container_name: phpmyadmin
     links:
       - toolshop-mariadb:db
     networks:
@@ -39,6 +41,7 @@ services:
       - phpmyadmindata:/var/www/html
 
   mailcatcher:
+    container_name: mailcatcher
     image: dockage/mailcatcher:0.9.0
     networks:
       - toolshop
