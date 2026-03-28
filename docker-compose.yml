@@ -35,6 +35,19 @@ services:
     networks:
       - toolshop
 
+  ui-proxy:
+    image: nginx:1.23.3-alpine
+    container_name: ui-proxy
+    depends_on:
+      - angular-ui
+    ports:
+      - 80:80
+    volumes:
+      - ./_docker/ui.vhost.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - toolshop
+      - frontend
+
   # The Web Server
   web:
     build:
