@@ -47,6 +47,11 @@ services:
     networks:
       - toolshop
       - frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ui-proxy.rule=Host(`toolshop.polteq-testing.com`)"
+      - "traefik.http.routers.ui-proxy.entrypoints=web"
+      - "traefik.http.services.ui-proxy.loadbalancer.server.port=8090"
 
   # The Web Server
   web:
